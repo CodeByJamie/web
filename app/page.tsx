@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Header from "./components/header";
 import * as motion from "framer-motion/client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
@@ -15,6 +15,17 @@ export default function Home() {
 	const handleClose = () => {
 		setIsOpen(false);
 	};
+
+	// Effect to manage body scroll
+	useEffect(() => {
+		if (isOpen) {
+			// Disable scroll when modal is open
+			document.body.classList.add("overflow-hidden");
+		} else {
+			// Enable scroll when modal is closed
+			document.body.classList.remove("overflow-hidden");
+		}
+	}, [isOpen]);
 
 	return (
 		<div className='flex flex-col min-h-screen'>
@@ -55,9 +66,21 @@ export default function Home() {
 						exit={{ opacity: 0 }}
 						onClick={handleClose}
 					>
-						<motion.div className="relative">
-
-						<motion.div className="absolute w-5 h-5 bg-red-500 top-0 right-0 z-10 rounded-xl"/>
+						<motion.div
+							className='relative'
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+						>
+							<motion.div
+								className='flex absolute w-8 h-8 bg-sky-600 top-0 right-0 z-10 rounded-full items-center justify-center cursor-pointer m-2 pb-1'
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}
+								onClick={handleClose}
+							>
+								<span className='text-white'>x</span>
+							</motion.div>
 
 							<motion.div
 								className='flex flex-row bg-white rounded-lg p-6 items-center text-justify'
@@ -72,21 +95,12 @@ export default function Home() {
 										width={300}
 										height={300}
 										alt='Coo Image'
-										className='border-r-2 pr-5'
+										className='border-r-2 border-r-zinc-400 pr-5'
 									/>
-									<span className='font-bold py-2'>
-										Highland Coo
-									</span>
+									<span className='font-bold py-2'>Highland Coo</span>
 								</motion.div>
 								<span className='px-4 text-xl max-w-[600px]'>
-									Highland coos, or Highland cattle, are a
-									striking breed known for their long, shaggy
-									hair and distinctive curved horns.
-									Originating from the Scottish Highlands,
-									these hardy cattle are well adapted to
-									rugged terrains and harsh weather, making
-									them a resilient choice for farmers in
-									challenging environments.
+									Highland coos, or Highland cattle, are a striking breed known for their long, shaggy hair and distinctive curved horns. Originating from the Scottish Highlands, these hardy cattle are well adapted to rugged terrains and harsh weather, making them a resilient choice for farmers in challenging environments.
 								</span>
 							</motion.div>
 						</motion.div>
