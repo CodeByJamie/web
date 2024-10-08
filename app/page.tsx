@@ -43,17 +43,18 @@ export default function Home() {
 						className='rounded-tr-xl rounded-br-xl hover:scale-110 transition-all duration-200'
 					/>
 				</div>
-				<div className='relative flex flex-row p-4 w-full px-8 -mt-64'>
-					<div className='flex flex-col'>
+				<div className='relative flex lg:flex-row md:flex-col p-4 w-full px-8 -mt-64 justify-between items-center'>
+					<div className='flex flex-col lg:items-center'>
 						<span className='font-bold text-4xl'>
 							Welcome to{" "}
 							<span className='text-sky-600'>Scots</span>
 							Farm
 						</span>
-						<span className='text-center text-zinc-400 font-bold opacity-50'>
+						<span className='text-zinc-400 font-bold opacity-50'>
 							Connecting the Highlands Together
 						</span>
 					</div>
+					<Image src={'/highland-coo.jpg'} width={450} height={0} alt="highland cow" className="rounded-xl border-4 border-sky-600"/>
 				</div>
 			</section>
 
